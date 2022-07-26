@@ -1,13 +1,26 @@
-# Sample Hardhat Project
+# react-hardhat-app
+A clean create-react-app template pre-installed with hardhat which makes the process super-easy to develop Decentralised Applications :) 
 
-This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, and a script that deploys that contract.
+## Steps to follow
 
-Try running some of the following tasks:
-
-```shell
-npx hardhat help
-npx hardhat test
-GAS_REPORT=true npx hardhat test
-npx hardhat node
-npx hardhat run scripts/deploy.js
+### 1) Install the library
 ```
+npm i react-hardhat-app
+```
+
+### 2) cd into the folder ``react-hardhat-app/``
+```
+cd react-hardhat-app
+```
+
+### 3) Deploy the smart_contract to the ``local-hardhat-node``
+``` 
+npx hardhat run scripts/deploy.js --network localhost
+```
+
+### 4) Run the react-app
+```
+npm start
+```
+
+Done :white_check_mark:
