@@ -1,29 +1,22 @@
-// We require the Hardhat Runtime Environment explicitly here. This is optional
-// but useful for running the script in a standalone fashion through `node <script>`.
-//
-// You can also run a script with `npx hardhat run <script>`. If you do that, Hardhat
-// will compile your contracts, add the Hardhat Runtime Environment's members to the
-// global scope, and execute the script.
-const hre = require("hardhat");
+// importing ethers from hardhat
+const { ethers } = require("hardhat");
 
-async function main() {
-  const currentTimestampInSeconds = Math.round(Date.now() / 1000);
-  const ONE_YEAR_IN_SECS = 365 * 24 * 60 * 60;
-  const unlockTime = currentTimestampInSeconds + ONE_YEAR_IN_SECS;
+// importing file system to write the contract address to ./src/contractAddress.js file
+const fs = require("fs");
 
-  const lockedAmount = hre.ethers.utils.parseEther("1");
+const main = async () => {
+  const contractFactory = await ethers.getContractFactory("HelloWorld");
 
-  const Lock = await hre.ethers.getContractFactory("Lock");
-  const lock = await Lock.deploy(unlockTime, { value: lockedAmount });
+  // deploying the smart_contract
+  const contract = await contractFactory.deploy();
 
-  await lock.deployed();
+  console.log("contract deployed successfully at ", contract.address);
 
-  console.log("Lock with 1 ETH deployed to:", lock.address);
-}
+  // updating the contract_address of the deployed 'HelloWorld' Smart_contract on the specified file
+  await fs.writeFileSync(
+    "./src/contractAddress.js",
+    `export const CONTRACT_ADDRESS = "${contract.address}"`
+  );
+};
 
-// We recommend this pattern to be able to use async/await everywhere
-// and properly handle errors.
-main().catch((error) => {
-  console.error(error);
-  process.exitCode = 1;
-});
+main();
