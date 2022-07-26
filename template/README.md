@@ -3,15 +3,14 @@ A clean create-react-app template pre-installed with hardhat which makes the pro
 
 ## Steps to follow
 
-### 1) Create project using the following code 
+### 1) Install the library
 ```
-npx create-react-app project_name --template react-hardhat-app
+npm i react-hardhat-app
 ```
-(replate the 'project_name' by your project's name)
 
 ### 2) cd into the folder ``react-hardhat-app/``
 ```
-cd project_name
+cd react-hardhat-app
 ```
 
 ### 3) Deploy the smart_contract to the ``local-hardhat-node``
